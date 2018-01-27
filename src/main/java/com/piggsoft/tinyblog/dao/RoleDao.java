@@ -21,5 +21,7 @@ public interface RoleDao {
 
     List<Role> find();
 
+    String[] findNameByIdIn(@Param("idList")List<Long> idList);
+
 
 }

@@ -4,15 +4,14 @@ public class User {
     private Long id;
     private String username;
     private String password;
-    private String xx;
-
-    public String getXx() {
-        return xx;
-    }
-
-    public void setXx(String xx) {
-        this.xx = xx;
-    }
+    //账号是否被启用
+    private Boolean enabled;
+    //账号是否没有过期
+    private Boolean accountNonExpired;
+    //权限是否未过期
+    private Boolean credentialsNonExpired;
+    //账户是否未被锁
+    private Boolean accountNonLocked;
 
     public Long getId() {
         return id;
@@ -38,6 +37,37 @@ public class User {
         this.password = password;
     }
 
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public Boolean getAccountNonExpired() {
+        return accountNonExpired;
+    }
+
+    public void setAccountNonExpired(Boolean accountNonExpired) {
+        this.accountNonExpired = accountNonExpired;
+    }
+
+    public Boolean getCredentialsNonExpired() {
+        return credentialsNonExpired;
+    }
+
+    public void setCredentialsNonExpired(Boolean credentialsNonExpired) {
+        this.credentialsNonExpired = credentialsNonExpired;
+    }
+
+    public Boolean getAccountNonLocked() {
+        return accountNonLocked;
+    }
+
+    public void setAccountNonLocked(Boolean accountNonLocked) {
+        this.accountNonLocked = accountNonLocked;
+    }
 
     @Override
     public boolean equals(Object o) {

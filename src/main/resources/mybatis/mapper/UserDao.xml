@@ -6,27 +6,43 @@
         <result column="id" property="id" jdbcType="BIGINT"/>
         <result column="username" property="username" jdbcType="VARCHAR"/>
         <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="enabled" property="enabled"/>
+        <result column="account_non_expired" property="accountNonExpired"/>
+        <result column="credentials_non_expired" property="credentialsNonExpired"/>
+        <result column="account_non_locked" property="accountNonLocked"/>
     </resultMap>
 
     <!--auto generated Code-->
     <sql id="Base_Column_List">
         `id`,
         `username`,
-        `password`
-    </sql>
+        `password`,
+`enabled`,
+`account_non_expired`,
+`credentials_non_expired`,
+`account_non_locked`
+</sql>
 
     <!--auto generated Code-->
     <insert id="insert" useGeneratedKeys="true" keyProperty="user.id">
         INSERT INTO user (
             `id`,
             `username`,
-            `password`
+            `password`,
+            `enabled`,
+            `account_non_expired`,
+            `credentials_non_expired`,
+            `account_non_locked`
         ) VALUES (
-            #{user.id,jdbcType=BIGINT},
-            #{user.username,jdbcType=VARCHAR},
-            #{user.password,jdbcType=VARCHAR}
+            #{user.id},
+            #{user.username},
+            #{user.password},
+            #{user.enabled},
+            #{user.accountNonExpired},
+            #{user.credentialsNonExpired},
+            #{user.accountNonLocked}
         )
-    </insert>
+	</insert>
 
     <!--auto generated Code-->
     <insert id="insertSelective" useGeneratedKeys="true" keyProperty="user.id">
@@ -35,41 +51,53 @@
             <if test="user.id!=null"> `id`,</if>
             <if test="user.username!=null"> `username`,</if>
             <if test="user.password!=null"> `password`,</if>
+            <if test="user.enabled!=null"> `enabled`,</if>
+            <if test="user.accountNonExpired!=null"> `account_non_expired`,</if>
+            <if test="user.credentialsNonExpired!=null"> `credentials_non_expired`,</if>
+            <if test="user.accountNonLocked!=null"> `account_non_locked`</if>
         </trim>
         VALUES
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="user.id!=null">#{user.id,jdbcType=BIGINT},
-            </if>
-            <if test="user.username!=null">#{user.username,jdbcType=VARCHAR},
-            </if>
-            <if test="user.password!=null">#{user.password,jdbcType=VARCHAR},
-            </if>
+            <if test="user.id!=null"> #{user.id},</if>
+            <if test="user.username!=null"> #{user.username},</if>
+            <if test="user.password!=null"> #{user.password},</if>
+            <if test="user.enabled!=null"> #{user.enabled},</if>
+            <if test="user.accountNonExpired!=null"> #{user.accountNonExpired},</if>
+            <if test="user.credentialsNonExpired!=null"> #{user.credentialsNonExpired},</if>
+            <if test="user.accountNonLocked!=null"> #{user.accountNonLocked}</if>
         </trim>
-    </insert>
+	</insert>
 
     <!--auto generated Code-->
-    <insert id="insertList">
-        INSERT INTO user (
+    <insert id="insertList">        INSERT INTO user(
         <include refid="Base_Column_List"/>
         )VALUES
         <foreach collection="users" item="user" index="index" separator=",">
             (
-            #{user.id,jdbcType=BIGINT},
-            #{user.username,jdbcType=VARCHAR},
-            #{user.password,jdbcType=VARCHAR}
+            #{user.id},
+            #{user.username},
+            #{user.password},
+            #{user.enabled},
+            #{user.accountNonExpired},
+            #{user.credentialsNonExpired},
+            #{user.accountNonLocked}
             )
         </foreach>
-    </insert>
+	</insert>
 
     <!--auto generated Code-->
     <update id="update">
         UPDATE user
         <set>
-            <if test="user.id != null"> `id`= #{user.id,jdbcType=BIGINT},</if>
-            <if test="user.username != null"> `username`= #{user.username,jdbcType=VARCHAR},</if>
-            <if test="user.password != null"> `password`= #{user.password,jdbcType=VARCHAR}</if>
+            <if test="user.id != null"> `id` = #{user.id},</if>
+            <if test="user.username != null"> `username` = #{user.username},</if>
+            <if test="user.password != null"> `password` = #{user.password},</if>
+            <if test="user.enabled != null"> `enabled` = #{user.enabled},</if>
+            <if test="user.accountNonExpired != null"> `account_non_expired` = #{user.accountNonExpired},</if>
+            <if test="user.credentialsNonExpired != null"> `credentials_non_expired` = #{user.credentialsNonExpired},</if>
+            <if test="user.accountNonLocked != null"> `account_non_locked` = #{user.accountNonLocked}</if>
         </set>
-        WHERE `id` = #{user.id,jdbcType=BIGINT}
+		WHERE `id` = #{user.id,jdbcType=BIGINT}
     </update>
 
 <!--auto generated by codehelper on 2018-01-25 18:41:14-->
