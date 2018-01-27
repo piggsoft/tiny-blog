@@ -5,7 +5,7 @@ spring:
    type: com.alibaba.druid.pool.DruidDataSource
    driver-class-name: com.mysql.jdbc.Driver
    url: jdbc:mysql://47.92.32.247:3306/tiny_blog?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false
-   username: blog
+   username: tiny_blog
    password: 123456qA!
 
 # 下面为连接池的补充设置，应用到上面所有数据源中

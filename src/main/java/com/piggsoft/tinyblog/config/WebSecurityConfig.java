@@ -21,18 +21,34 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    // @formatter:off
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests().antMatchers("/resources/**", "/registration").permitAll().anyRequest().authenticated()
-                .and()
-                    .formLogin().loginPage("/login").failureUrl("/login?error").permitAll()
-                .and()
-                    .logout().permitAll();
+            //设定哪些不需要权限即可访问
+            .authorizeRequests().antMatchers("/resources/**", "/registration").permitAll()
+            //剩下的全部需要权限
+            .anyRequest().authenticated()
+            .and()
+                .formLogin().loginPage("/login").permitAll()
+            .and()
+                .logout()
+                //使session失效
+                .invalidateHttpSession(true)
+                //删除cookie
+                .deleteCookies("JSESSIONID")
+                .permitAll();
+        http
+            .headers()
+                .defaultsDisabled()
+                .cacheControl();
     }
+    // @formatter:on
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
     }
+
+
 }

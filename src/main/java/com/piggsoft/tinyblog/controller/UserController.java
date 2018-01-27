@@ -2,7 +2,6 @@ package com.piggsoft.tinyblog.controller;
 
 import com.piggsoft.tinyblog.dto.UserForm;
 import com.piggsoft.tinyblog.po.User;
-import com.piggsoft.tinyblog.security.SecurityService;
 import com.piggsoft.tinyblog.service.IUserService;
 import com.piggsoft.tinyblog.validater.UserNameValidator;
 import org.dozer.Mapper;
@@ -14,15 +13,14 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @Controller
 public class UserController {
     @Autowired
     private IUserService userService;
-
-    @Autowired
-    private SecurityService securityService;
 
     @Autowired
     private UserNameValidator userNameValidator;
@@ -38,7 +36,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String registration(@Valid UserForm userForm, BindingResult bindingResult) {
+    public String registration(HttpServletRequest request, @Valid UserForm userForm, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             return "registration";
@@ -52,9 +50,14 @@ public class UserController {
 
         User user = mapper.map(userForm, User.class);
 
-        userService.insert(user);
+        userService.save(user);
 
-        securityService.autologin(user.getUsername(), user.getPassword());
+        try {
+            request.login(userForm.getUsername(), userForm.getPassword());
+        } catch (ServletException e) {
+            e.printStackTrace();
+        }
+
 
         return "redirect:/welcome";
     }

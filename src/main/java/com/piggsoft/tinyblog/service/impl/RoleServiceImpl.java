@@ -5,10 +5,10 @@ import javax.annotation.Resource;
 import java.util.List;
 import com.piggsoft.tinyblog.po.Role;
 import com.piggsoft.tinyblog.dao.RoleDao;
-import com.piggsoft.tinyblog.service.RoleService;
+import com.piggsoft.tinyblog.service.IRoleService;
 
 @Service
-public class RoleServiceImpl implements RoleService{
+public class RoleServiceImpl implements IRoleService {
 
     @Resource
     private RoleDao roleDao;
@@ -31,5 +31,10 @@ public class RoleServiceImpl implements RoleService{
     @Override
     public int update(Role role){
         return roleDao.update(role);
+    }
+
+    @Override
+    public List<Role> findAll() {
+        return roleDao.find();
     }
 }
