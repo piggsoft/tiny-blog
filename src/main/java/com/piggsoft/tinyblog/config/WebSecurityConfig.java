@@ -25,14 +25,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+            .authorizeRequests()
             //设定哪些不需要权限即可访问
-            .authorizeRequests().antMatchers("/resources/**", "/registration").permitAll()
+            .antMatchers("/resources/**", "/registration").permitAll()
+            .antMatchers("/admin/**").authenticated()
             //剩下的全部需要权限
-            .anyRequest().authenticated()
+            .antMatchers("/**").anonymous()
+            //.anyRequest().authenticated()
             .and()
-                .formLogin().loginPage("/login").permitAll()
+                .formLogin().loginPage("/admin/login").permitAll()
             .and()
-                .logout()
+                .logout().logoutUrl("/admin/logout")
                 //使session失效
                 .invalidateHttpSession(true)
                 //删除cookie
