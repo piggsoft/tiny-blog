@@ -55,6 +55,12 @@ spring:
   messages:
     basename: messages
   thymeleaf:
+  cache:
+    cache-names: user
+    guava:
+      spec: maximumSize=500,expireAfterAccess=600s
+    caffeine:
+      spec: maximumSize=500,expireAfterAccess=600s
 server:
   port: 8099
 dozer:
@@ -62,3 +68,6 @@ dozer:
 mybatis:
   mapper-locations: classpath:mybatis/mapper/*.xml
   type-aliases-package: com.piggsoft.tinyblog.po
+logging:
+  level:
+    com.piggsoft: debug

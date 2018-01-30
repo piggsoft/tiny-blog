@@ -23,7 +23,7 @@ public class BaseInterceptor implements HandlerInterceptor {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        modelAndView.addObject("kit", new Object());
+        modelAndView.getModel().put("kit", new Object());
     }
 
     @Override

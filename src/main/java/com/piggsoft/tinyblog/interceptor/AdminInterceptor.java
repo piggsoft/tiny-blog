@@ -23,7 +23,7 @@ public class AdminInterceptor implements HandlerInterceptor {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        modelAndView.addObject("adminKit", new Object());
+        modelAndView.getModel().put("adminKit", new Object());
     }
 
     @Override

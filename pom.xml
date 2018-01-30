@@ -25,12 +25,18 @@
 		<druid.version>1.1.6</druid.version>
 		<dozer.version>6.1.0</dozer.version>
 		<pagehelper.starter.version>1.2.3</pagehelper.starter.version>
+		<guava.version>23.6-jre</guava.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-cache</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>${guava.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.alibaba</groupId>

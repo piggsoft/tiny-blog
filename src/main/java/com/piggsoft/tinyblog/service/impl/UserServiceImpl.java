@@ -7,6 +7,7 @@ import com.piggsoft.tinyblog.service.IUserRoleService;
 import com.piggsoft.tinyblog.service.IUserService;
 import com.piggsoft.tinyblog.service.IRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -66,6 +67,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
+    @Cacheable(value = "user", key = "'user:                      '.concat(#username)")
     public User findByUsername(String username) {
         return userDao.findOneByUsername(username);
     }
