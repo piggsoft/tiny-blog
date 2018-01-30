@@ -67,7 +67,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    @Cacheable(value = "user", key = "'user:                      '.concat(#username)")
+    @Cacheable(value = "user", key = "'user'.concat(#username)")
     public User findByUsername(String username) {
         return userDao.findOneByUsername(username);
     }

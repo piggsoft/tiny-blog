@@ -30,7 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/resources/**", "/registration").permitAll()
             .antMatchers("/admin/**").authenticated()
             //剩下的全部需要权限
-            .antMatchers("/**").anonymous()
+            .antMatchers("/**").permitAll()
             //.anyRequest().authenticated()
             .and()
                 .formLogin().loginPage("/admin/login").permitAll()

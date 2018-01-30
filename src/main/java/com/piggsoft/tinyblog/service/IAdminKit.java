@@ -7,4 +7,5 @@ package com.piggsoft.tinyblog.service;
  * @since 1.0
  */
 public interface IAdminKit {
+    int random(int max);
 }

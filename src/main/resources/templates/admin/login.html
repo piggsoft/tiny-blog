@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="pic=${(new java.util.Random().nextInt(5) + 1) + '.png' }"
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="pic=${adminKit.random(5) + '.png' }"
       th:style="'background:url(/resources/admin/images/bg/'+@{${pic}}+');no-repeat; background-size: cover;'">
 <head>
     <meta charset="utf-8"/>
@@ -37,7 +37,7 @@
         }
 
         .input-border {
-            b1 . png
+            b1.png
             font-size: 14px;
             width: 100%;
             height: 40px;
@@ -65,7 +65,7 @@
                   th:with="hasError=${error != null}" th:class="|form-group ${hasError? 'has-error': ''}|">
                 <div class="form-group">
                     <div class="col-xs-12">
-                        <input class=" input-lg input-border" name="username" type="text" required=""
+                        <input class=" input-lg input-border" name="username" type="text" required="" autofocus="true"
                                placeholder="账号:"/>
                     </div>
                 </div>

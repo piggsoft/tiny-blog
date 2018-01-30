@@ -1,5 +1,7 @@
 package com.piggsoft.tinyblog.interceptor;
 
+import com.piggsoft.tinyblog.service.IKit;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -16,6 +18,9 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 public class BaseInterceptor implements HandlerInterceptor {
 
+    @Autowired
+    private IKit kit;
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         return true;
@@ -23,7 +28,11 @@ public class BaseInterceptor implements HandlerInterceptor {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        modelAndView.getModel().put("kit", new Object());
+        if (modelAndView != null) {
+            modelAndView.getModel().put("kit", kit);
+        } else {
+            request.setAttribute("kit", kit);
+        }
     }
 
     @Override
