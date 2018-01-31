@@ -43,7 +43,7 @@ public class GlobalDefaultExceptionHandler {
         ModelAndView mav = new ModelAndView();
         mav.addObject("exception", e);
         mav.addObject("url", req.getRequestURL());
-        mav.setViewName("123");
+        mav.setViewName("error/500");
         return mav;
     }
 
